@@ -1,4 +1,4 @@
-FROM rocker/geospatial:latest
+FROM rocker/geospatial:4
 
 COPY ./ /home/rstudio
 
@@ -13,6 +13,6 @@ RUN Rscript -e "devtools::install_github('uribo/jpndistrict')"
 RUN aws s3 cp s3://globalnightlight/F162017/F16201701041855.night.OIS.vis.co.tif \
 /home/rstudio/data_processing/night_lights/ --no-sign-request
 
-RUN Rscript ./data_processing/get_tokyo_geojson.R
+RUN Rscript ./data_processing/get_south_kanto_geojson.R
 
 RUN python3 ./data_processing/tile_aggregation.py
